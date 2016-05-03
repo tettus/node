@@ -6,3 +6,34 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+
+.navbar{
+	background-color: rgb(128,128,0);
+	color:white;
+	font-weight: bold;
+}
+
+.navbar a{	 
+	color:white;
+	font-weight: bold;
+}
+
+
+.panel-custom .panel-heading{
+	background-color:  	rgb(154,205,50); !important;
+	color:white;
+	font-weight:bold;
+	text-align: center;
+}
+
+.panel-custom .panel-body{	 
+	border: 1px solid  	rgb(154,205,50);
+	color :rgb(128,0,128);	
+}
+
+.btn-submit{
+	background-color:  	rgb(154,205,50); !important;
+	color:white;
+}
