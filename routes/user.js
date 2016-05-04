@@ -1,10 +1,12 @@
 
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
-var url = 'mongodb://useru:useru4a0@ds045704.mlab.com:45704/tettu';
 
-function mongoInsert(db, collection_name, data, cb) {
-	var collection = db.collection(collection_name);
+var  db = require('./db');
+ 
+
+function mongoInsert(collection_name, data, cb) {
+	var collection = db.get().collection(collection_name);
 	collection.insert(data, function(err, res) {
 		if (err) {
 			console.log(err);
@@ -20,9 +22,9 @@ function mongoInsert(db, collection_name, data, cb) {
 /*
  * Generate user id for new registration
  */
-function getNextSequenceValue(db, category, callback) {
+function getNextSequenceValue(category, callback) {
 
-	var collection = db.collection("userseq");
+	var collection = db.get().collection("userseq");
 
 	collection.findAndModify({
 		"category" : 1
@@ -33,8 +35,8 @@ function getNextSequenceValue(db, category, callback) {
 	},
 
 	function(err, doc) {
-		console.log("Session: %j", doc);
-		callback(err, doc);
+		 
+		return callback(err, doc);
 	});
 }
 
@@ -54,88 +56,36 @@ exports.registration = function(req, res) {
  * 
  */
 exports.register = function(req, res) {
+	 
+	  getNextSequenceValue( 0, function(err, obj) {
+		 
+			if (err) {
+				console.log(err);
+			} else {
+				var fullname = req.param("fullname");
+				var phonenumber = req.param("phonenumber");
+				var email = req.param("email");
+				var password = req.param("password");
 
-	MongoClient.connect(url, function(err, db) {
+				var newuser = {
+					"userid" : obj.value.userid,
+					"fullname" : fullname,
+					"phonenumber" : phonenumber,
+					"email" : email,
+					"password" : password
+				};
 
-		if (err) {
-			console.log(err);
-		} else {
-
-			var userId = getNextSequenceValue(db, 0, function(err, obj) {
-				 
-				if (err) {
-					console.log(err);
-				} else {
-					var fullname = req.param("fullname");
-					var phonenumber = req.param("phonenumber");
-					var email = req.param("email");
-					var password = req.param("password");
-
-					var newuser = {
-						"userid" : obj.value.userid,
-						"fullname" : fullname,
-						"phonenumber" : phonenumber,
-						"email" : email,
-						"password" : password
-					};
-
-					mongoInsert(db, 'user', newuser, function(user_res) {
-						console.log(user_res);
-						db.close();
-					});
-				}
-			});
-
-		}
-
-		console.log('Disconnected from server successfully');
-		res.render('index', {
-			title : 'Login'
+				mongoInsert('user', newuser, function(user_res) {
+					res.render('index', {
+						title : 'Login'
+					});					 
+				});
+			}
 		});
-	});
-
 };
 
 
 exports.authenticate = function(req, res) {
 	
-	MongoClient.connect(url, function(err, db) {
-
-		if (err) {
-			console.log(err);
-		} else {
-
-			var userId = getNextSequenceValue(db, 0, function(err, obj) {
-				 
-				if (err) {
-					console.log(err);
-				} else {
-					var fullname = req.param("fullname");
-					var phonenumber = req.param("phonenumber");
-					var email = req.param("email");
-					var password = req.param("password");
-
-					var newuser = {
-						"userid" : obj.value.userid,
-						"fullname" : fullname,
-						"phonenumber" : phonenumber,
-						"email" : email,
-						"password" : password
-					};
-
-					mongoInsert(db, 'user', newuser, function(user_res) {
-						console.log(user_res);
-						db.close();
-					});
-				}
-			});
-		}
-		console.log('Disconnected from server successfully');
-		res.render('index', {
-			title : 'Login'
-		});
-	});
-	res.render('index', {
-		title : 'Registration'
-	});
+	 
 };

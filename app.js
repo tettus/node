@@ -7,9 +7,12 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
-
+  , path = require('path')
+  , db = require('./routes/db');
 var app = express();
+
+
+var url = 'mongodb://useru:useru4a0@ds045704.mlab.com:45704/tettu';
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -23,7 +26,7 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
-if ('development' == app.get('env')) {
+if ('development' === app.get('env')) {
   app.use(express.errorHandler());
 }
 
@@ -35,6 +38,14 @@ app.get('/login', user.login);
 app.get('/registration', user.registration);
 app.post('/register', user.register);
 
+
+//Connect to Mongo on start
+db.connect(url, function(err) {
+  if (err) {
+    console.log('Unable to connect to Mongo.');
+    process.exit(1);
+  }  
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

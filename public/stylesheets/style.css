@@ -1,13 +1,16 @@
+
+:root {
+  --main-color: rgb(154,205,50);
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+   
+  font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
 }
-
-
 
 .navbar{
 	background-color: rgb(128,128,0);
@@ -20,22 +23,28 @@ a {
 	font-weight: bold;
 }
 
+.input-group-addon-cust{
+	background-color:#ffffff;
+	color : var(--main-color) !important;
+	font-weight: bold;
+}
+
 .panel-custom{
 	 border-radius: 8px;
+	 color : var(--main-color) !important;
 }
+
 .panel-custom .panel-heading{
-	background-color:  	rgb(154,205,50); !important;
+	background-color:  	var(--main-color) !important;
 	color:white;
 	font-weight:bold;
 	text-align: center;
 }
 
-.panel-custom .panel-body{	 
- 
+.panel-custom .panel-body{	  
 	border-style: solid;
     border-width: 1px 1px 0px 1px;
     border-color:rgb(154,205,50);
-	color :rgb(128,0,128);	
 	border-radius: 8px 8px 0px 0px;
 }
 
@@ -43,7 +52,7 @@ a {
 	border-style: solid;
     border-width: 0px 1px 1px 1px;
     border-color:rgb(154,205,50);
-	color :rgb(128,0,128);	
+	color :rgb(154,205,50);
 	border-radius: 0px 0px 8px 8px;
 }
 
@@ -52,8 +61,12 @@ a {
 	color:white;
 }
 
-.panel {
-    max-width: 430px;
+.btn-submit:hover{
+	color:white;
+}
+
+
+.panel-login ,.panel-registration{
+    max-width: 380px;
     margin: 0 auto 20px;
-   
 }
