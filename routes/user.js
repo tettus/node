@@ -15,21 +15,6 @@ function mongoInsert(db, collection_name, data, cb) {
 	});
 }
 
-/*
- * 
- */
-function mongoInsert(db, collection_name, data, cb) {
-	 
-	var cursor =db.collection('restaurants').find( { "borough": "Manhattan" } );
-	   cursor.each(function(err, doc) {
-	      assert.equal(err, null);
-	      if (doc != null) {
-	         console.dir(doc);
-	      } else {
-	         callback();
-	      }
-	   });
-}
 
 
 /*

@@ -20,7 +20,9 @@ a {
 	font-weight: bold;
 }
 
-
+.panel-custom{
+	 border-radius: 8px;
+}
 .panel-custom .panel-heading{
 	background-color:  	rgb(154,205,50); !important;
 	color:white;
@@ -29,11 +31,29 @@ a {
 }
 
 .panel-custom .panel-body{	 
-	border: 1px solid  	rgb(154,205,50);
+ 
+	border-style: solid;
+    border-width: 1px 1px 0px 1px;
+    border-color:rgb(154,205,50);
 	color :rgb(128,0,128);	
+	border-radius: 8px 8px 0px 0px;
+}
+
+.panel-custom .panel-footer{
+	border-style: solid;
+    border-width: 0px 1px 1px 1px;
+    border-color:rgb(154,205,50);
+	color :rgb(128,0,128);	
+	border-radius: 0px 0px 8px 8px;
 }
 
 .btn-submit{
 	background-color:  	rgb(154,205,50); !important;
 	color:white;
+}
+
+.panel {
+    max-width: 430px;
+    margin: 0 auto 20px;
+   
 }
