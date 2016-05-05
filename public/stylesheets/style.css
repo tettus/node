@@ -1,72 +1,65 @@
-
-:root {
-  --main-color: rgb(154,205,50);
+:root { 
+	--main-color: rgb(154, 205, 50);
 }
 
 body {
-   
-  font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif;
+	font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif;
+	background-color: rgba(243, 237, 237, 0.16);
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
+	font-size: 16px;
 }
 
-.navbar{
-	background-color: rgb(128,128,0);
-	color:white;
+.navbar-custom {
+	background-color: #1fa67a;
+	color: #C9EFE2;
 	font-weight: bold;
 }
 
-.navbar a{	 
-	color:white;
+.error{
+	color: red;
+	font-weight;bold;
+	font-size: 1em;
+	margin-bottom:5px;
+}
+.navbar a {
+	color: #C9EFE2;
 	font-weight: bold;
 }
 
-.input-group-addon-cust{
-	background-color:#ffffff;
-	color : var(--main-color) !important;
+.input-group-addon-cust {
+	background-color: #ffffff;
+	color: var(--main-color) !important;
 	font-weight: bold;
 }
 
-.panel-custom{
-	 border-radius: 8px;
-	 color : var(--main-color) !important;
+.panel-custom {
+	color: var(--main-color) !important;
+	border: 1px solid #DEDEDE;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	box-shadow: 0 0 10px rgba(189, 189, 189, 0.5);
+	-webkit-box-shadow: 0 0 10px rgba(189, 189, 189, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(189, 189, 189, 0.5);
 }
 
-.panel-custom .panel-heading{
-	background-color:  	var(--main-color) !important;
-	color:white;
-	font-weight:bold;
-	text-align: center;
+.panel-custom .panel-body{
+	color: var(- -main-color) !important;
 }
 
-.panel-custom .panel-body{	  
-	border-style: solid;
-    border-width: 1px 1px 0px 1px;
-    border-color:rgb(154,205,50);
-	border-radius: 8px 8px 0px 0px;
+.btn-submit {
+	background-color: rgb(154, 205, 50); ! important;
+	color: white;
 }
 
-.panel-custom .panel-footer{
-	border-style: solid;
-    border-width: 0px 1px 1px 1px;
-    border-color:rgb(154,205,50);
-	color :rgb(154,205,50);
-	border-radius: 0px 0px 8px 8px;
+.btn-submit:hover {
+	color: white;
 }
 
-.btn-submit{
-	background-color:  	rgb(154,205,50); !important;
-	color:white;
-}
-
-.btn-submit:hover{
-	color:white;
-}
-
-
-.panel-login ,.panel-registration{
-    max-width: 380px;
-    margin: 0 auto 20px;
+.panel-login, .panel-registration {
+	max-width: 380px;
+	margin: 0 auto 20px;
 }

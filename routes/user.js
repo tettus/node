@@ -84,8 +84,62 @@ exports.register = function(req, res) {
 		});
 };
 
+/*
+ * login page
+ */
+
+exports.loginpage = function(req, res) {
+	res.render('login', {
+		title : 'Login'
+	});	
+};
+
 
 exports.authenticate = function(req, res) {
 	
-	 
+	var email = req.param("email");
+	var password = req.param("password");
+	
+	db.get().collection("user").findOne({"email":email}, function(err, item) {
+		
+		if(err){
+			res.render('login', {
+				title : 'Login',
+				error :  "true",
+				msg:"Unable to get details please try later."
+			});
+		}
+		
+		if(item!==null){
+			console.log("item.password!==password "+(item.password!==password));
+			if(item.password!==password){
+				res.render('login', {
+					title : 'Login',
+					error :  "true",
+					msg:"The email and password do not match."
+				});				
+			}else{
+				res.render('profilelist', {
+					title : 'Login'		 
+				});	
+				
+			}
+			
+		} else{
+			console.log("Error:No record found for [ "+email+"]");
+			res.render('login', {
+				title : 'Login',
+				error : "true",
+				msg:"The email does not exist please register."
+			});
+		}
+		 
+	});
+};
+
+
+exports.profilelist = function(req, res) {
+	res.render('profilelist', {
+		title : 'Login'
+	});	
 };

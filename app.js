@@ -34,10 +34,12 @@ app.get('/', routes.index);
 
 
 
-app.get('/login', user.login);
+app.get('/loginpage', user.loginpage);
+app.post('/authenticatelogin', user.authenticate);
 app.get('/registration', user.registration);
 app.post('/register', user.register);
 
+app.get('/profilelist', user.profilelist);
 
 //Connect to Mongo on start
 db.connect(url, function(err) {

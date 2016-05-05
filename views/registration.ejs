@@ -6,7 +6,7 @@
 		<div class="panel panel-custom panel-registration">
 
 			<div class="panel-body">
-			   <span class="text-center"> <h3>Register your account</h3> </span><br>
+			    <h3 class="text-center">Register your account</h3><br>
 				<form class="form-horizontal" role="form" action="/register"
 					method="post">
 					<div class="form-group">
@@ -15,7 +15,7 @@
 								<span class="input-group-addon input-group-addon-cust"><i class="fa fa-user" aria-hidden="true"></i>
 								</span><input
 									type="text" class="form-control" id="fullname" name="fullname"
-									placeholder="Full Name" required>
+									placeholder="Full Name" required  tabindex='1'>
 
 							</div>
 						</div>
@@ -25,8 +25,7 @@
 							<div class="input-group margin-bottom-sm">
 								<span class="input-group-addon input-group-addon-cust"><i class="fa fa-phone"
 									aria-hidden="true"></i> </span><input type="text" class="form-control"
-									id="phonenumber" name="phonenumber" placeholder="Phone number" required>
-
+									id="phonenumber" name="phonenumber" placeholder="Phone number" required  tabindex='2'>
 							</div>
 						</div>
 
@@ -36,9 +35,9 @@
 						<div class="col-sm-12">
 							<div class="input-group margin-bottom-sm">
 								<span class="input-group-addon input-group-addon-cust"><i
-									class="fa fa-envelope-o " aria-hidden="true"></i></span> <input
+									class="fa fa-envelope" aria-hidden="true"></i></span> <input
 									type="email" class="form-control" id="email" name="email"
-									placeholder="Email Address" required>
+									placeholder="Email Address" required  tabindex='3'>
 							</div>
 						</div>
 
@@ -49,23 +48,25 @@
 								<span class="input-group-addon input-group-addon-cust"><i
 									class="fa fa-key" aria-hidden="true"></i></span> <input
 									type="password" class="form-control" id="pwd" name="password"
-									placeholder="Password" required>
+									placeholder="Password"  tabindex='4' required>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<div class="checkbox">
-								<label><input type="checkbox"> I accept terms and condition</label>
+								<label><input type="checkbox"  tabindex='5'> I accept terms and condition</label>
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-3 col-sm-9">
-							<button type="submit" class="btn btn-submit">Register</button>
-							<a href="/" class="btn btn-submit">Cancel</a>
-						</div>
-					</div>
+				<div class="row">
+                    <div class="col-sm-12">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-submit btn-success" id="singlebutton">Register</button>
+                            <a href="/" class="btn btn-submit  btn-success">Cancel</a>
+                        </div>
+                    </div>
+                </div>
 				</form>
 
 			</div>
