@@ -1,8 +1,9 @@
 
-var MongoClient = require('mongodb').MongoClient;
+ 
 var assert = require('assert');
 
-var  db = require('./db');
+var  db = require('./db')
+    ,profile= require('./profiles');
  
 
 function mongoInsert(collection_name, data, cb) {
@@ -119,9 +120,7 @@ exports.authenticate = function(req, res) {
 					msg:"The email and password do not match."
 				});				
 			}else{
-				res.render('profilelist', {
-					title : 'Login'		 
-				});	
+				profile.profilelist(req,res);
 				
 			}
 			

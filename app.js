@@ -6,6 +6,8 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , contact = require('./routes/contact')
+   , profile = require('./routes/profiles')
   , http = require('http')
   , path = require('path')
   , db = require('./routes/db');
@@ -17,6 +19,7 @@ var url = 'mongodb://useru:useru4a0@ds045704.mlab.com:45704/tettu';
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
+app.set('images', __dirname + '/images');
 app.set('view engine', 'ejs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -39,7 +42,11 @@ app.post('/authenticatelogin', user.authenticate);
 app.get('/registration', user.registration);
 app.post('/register', user.register);
 
-app.get('/profilelist', user.profilelist);
+app.get('/profilelist', profile.profilelist);
+app.get('/searchprofiles', profile.searchprofiles);
+
+
+app.get('/contactus', contact.contactus);
 
 //Connect to Mongo on start
 db.connect(url, function(err) {

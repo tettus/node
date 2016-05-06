@@ -1,10 +1,11 @@
 :root { 
-	--main-color: rgb(154, 205, 50);
+	--main-color: #1fa67a;
 }
 
 body {
 	font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif;
 	background-color: rgba(243, 237, 237, 0.16);
+	background-image: url("/images/paper.png");
 }
 
 a {
@@ -41,9 +42,9 @@ a {
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
-	box-shadow: 0 0 10px rgba(189, 189, 189, 0.5);
-	-webkit-box-shadow: 0 0 10px rgba(189, 189, 189, 0.5);
-	-moz-box-shadow: 0 0 10px rgba(189, 189, 189, 0.5);
+	box-shadow: 0 0 10px rgba(19, 11, 11, 0.5);
+	-webkit-box-shadow: 0 0 10px rgba(19, 11, 11, 0.5);
+	-moz-box-shadow: 0 0 10px rgba(19, 11, 11, 0.5);
 }
 
 .panel-custom .panel-body{
@@ -62,4 +63,33 @@ a {
 .panel-login, .panel-registration {
 	max-width: 380px;
 	margin: 0 auto 20px;
+}
+
+.panel-contact {
+	max-width: 480px;
+	margin: 0 auto 20px;
+}
+
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #1fa67a;
+    border-color: #1fa67a;
+}
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+#profiles_wrapper > :first-child{
+	display:none;
 }
