@@ -71,6 +71,17 @@ a {
 }
 
 
+.panel-welcome{
+	color: var(--main-color) !important;
+	border: 1px solid #DEDEDE;
+	border-radius: 2px;
+	-webkit-border-radius: 5px;
+	 -moz-border-radius: 3px;
+    box-shadow: 0 0 10px rgba(189,189,189,0.4);
+    -webkit-box-shadow: 0 0 10px rgba(189,189,189,0.4);
+    -moz-box-shadow: 0 0 10px rgba(189,189,189,0.4);
+}
+
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
     z-index: 3;
     color: #fff;
@@ -92,4 +103,16 @@ a {
 
 #profiles_wrapper > :first-child{
 	display:none;
+}
+
+.input-group-custom{
+	-webkit-border-radius: 5px !important;
+	-moz-border-radius: 5px !important;
+}
+.input-cc-custom{
+	padding-right :2px;
+}
+.input-ph-custom{
+	
+	padding-left :2px;
 }

@@ -6,30 +6,47 @@
 		<div class="panel panel-custom panel-registration">
 
 			<div class="panel-body">
-			    <h3 class="text-center">Register your account</h3><br>
+				<h3 class="text-center">Register your account</h3>
+				<br>
 				<form class="form-horizontal" role="form" action="/register"
 					method="post">
+					<%if(locals.error!==null && locals.error==="true"){%>
+					<div class="error" role="alert">
+						<span class="glyphicon glyphicon-exclamation-sign"
+							aria-hidden="true"></span> <span class="sr-only">Error:</span>
+						<%=message%>
+					</div>
+					<%}%>
 					<div class="form-group">
 						<div class="col-sm-12">
 							<div class="input-group margin-bottom-sm">
-								<span class="input-group-addon input-group-addon-cust"><i class="fa fa-user" aria-hidden="true"></i>
-								</span><input
-									type="text" class="form-control" id="fullname" name="fullname"
-									placeholder="Full Name" required  tabindex='1'>
+								<span class="input-group-addon input-group-addon-cust"><i
+									class="fa fa-user" aria-hidden="true"></i> </span><input type="text"
+									class="form-control" id="fullname" name="fullname"
+									placeholder="Full Name" required tabindex='1'>
 
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-12">
+						<div class="col-xs-5 col-sm-5 col-md-5 input-cc-custom">						  
 							<div class="input-group margin-bottom-sm">
-								<span class="input-group-addon input-group-addon-cust"><i class="fa fa-phone"
-									aria-hidden="true"></i> </span><input type="text" class="form-control"
-									id="phonenumber" name="phonenumber" placeholder="Phone number" required  tabindex='2'>
+								<span class="input-group-addon input-group-addon-cust"><i
+									class="fa fa-phone" aria-hidden="true"></i> </span>
+								 <select 
+									class="form-control" name="countrycode" tabindex='2'>
+									<option value="(+001)">(+001)</option>
+									<option value="(+91)" selected>(+91)</option>
+								</select> 								
 							</div>
 						</div>
-
+						<div class="col-xs-7 col-sm-7 col-md-7 input-ph-custom">					 
+								<input type="text" class="form-control input-group-custom" id="phonenumber"
+									name="phonenumber" placeholder="Phone number" required
+									tabindex='3'>	
+						</div>
 					</div>
+					
 
 					<div class="form-group">
 						<div class="col-sm-12">
@@ -37,7 +54,7 @@
 								<span class="input-group-addon input-group-addon-cust"><i
 									class="fa fa-envelope" aria-hidden="true"></i></span> <input
 									type="email" class="form-control" id="email" name="email"
-									placeholder="Email Address" required  tabindex='3'>
+									placeholder="Email Address" required tabindex='4'>
 							</div>
 						</div>
 
@@ -48,30 +65,32 @@
 								<span class="input-group-addon input-group-addon-cust"><i
 									class="fa fa-key" aria-hidden="true"></i></span> <input
 									type="password" class="form-control" id="pwd" name="password"
-									placeholder="Password"  tabindex='4' required>
+									placeholder="Password" tabindex='4' required>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<div class="checkbox">
-								<label><input type="checkbox"  tabindex='5'> I accept terms and condition</label>
+								<label><input type="checkbox" tabindex='5' required> I
+									accept terms and condition</label>
 							</div>
 						</div>
 					</div>
-				<div class="row">
-                    <div class="col-sm-12">
-                        <div class="text-center">
-                            <button type="submit" class="btn btn btn-lg  btn-success" id="singlebutton">Register</button>
-                            <a href="/" class="btn btn-lg btn-success">Cancel</a>
-                        </div>
-                    </div>
-                </div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="text-center">
+								<button type="submit" class="btn btn btn-lg  btn-success"
+									id="singlebutton">Register</button>
+								<a href="/" class="btn btn-lg btn-success">Cancel</a>
+							</div>
+						</div>
+					</div>
 				</form>
 
 			</div>
 			<div class="panel-footer text-center">
-				 <a href="/registration" class="btn">Terms and Conditions</a>
+				<a href="/registration" class="btn">Terms and Conditions</a>
 			</div>
 		</div>
 	</div>

@@ -5,13 +5,14 @@
 
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
-<script>
-	$(document).ready(function() {
-		$('#profiles').DataTable();
 
-	});
-</script>
+<style>
 
+.popover-content{
+  padding: 0px !important;
+}
+
+</style>
 </head>
 
 
@@ -29,21 +30,20 @@
 									<div class="form-group">
 										<label for="userid" class="sr-only">User Id</label>
 										<div class="input-group ">
-										 <span
-											class="input-group-addon input-group-addon-cust"> <i
-											class="fa fa-user" aria-hidden="true"></i>
-										</span> <input type="text" class="form-control" id="userid"
-											name="userid" placeholder="User Id">
-											</div>
+											<span class="input-group-addon input-group-addon-cust">
+												<i class="fa fa-user" aria-hidden="true"></i>
+											</span> <input type="text" class="form-control" id="userid"
+												name="userid" placeholder="User Id">
+										</div>
 									</div>
 									<div class="form-group">
-										<label for="star" class="sr-only">Star</label> 
+										<label for="star" class="sr-only">Star</label>
 										<div class="input-group ">
-										<span
-											class="input-group-addon input-group-addon-cust"><i
-											class="fa fa-star" aria-hidden="true"></i></span> <input type="text"
-											class="form-control" id="text" name="star" placeholder="Star">
-											</div>
+											<span class="input-group-addon input-group-addon-cust"><i
+												class="fa fa-star" aria-hidden="true"></i></span> <input
+												type="text" class="form-control" id="text" name="star"
+												placeholder="Star">
+										</div>
 									</div>
 									<div class="form-group">
 										<button type="submit" class="btn btn-success"
@@ -63,13 +63,14 @@
 					<div class="col-md-12">
 						<div class="panel  panel-custom ">
 							<div class="panel-body">
-								<table id="profiles" class="table table-striped table-bordered">
+								<table id="profiles" class="table table-striped table-bordered  table-resposive">
 									<thead>
 										<tr>
 											<th>ID</th>
 											<th>Name</th>
-											<th>D.O.B</th>
+											<th class="hidden-xs">D.O.B</th>
 											<th class="hidden-xs">Star</th>
+											<th class="hidden-md hidden-sm hidden-lg">Info</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -78,8 +79,27 @@
 										<tr>
 											<td>&nbsp;<%=user.userid%></td>
 											<td>&nbsp;<%=user.fullname%></td>
-											<td>&nbsp;</td>
 											<td class="hidden-xs">&nbsp;</td>
+											<td class="hidden-xs">&nbsp;</td>
+											<td class="hidden-md hidden-sm hidden-lg">
+											   <a
+												href="#none" title="Info" data-toggle="popover"
+												data-placement="top"
+												data-content='<table class="table table-bordered">
+														    <tbody>
+														      <tr>
+														        <td>D.O.B</td>
+														        <td>12-12-1990</td>
+														        
+														      </tr>
+														      <tr>
+														        <td>Star</td>
+														        <td>Super star rajini</td>
+														      </tr>
+														    </tbody>
+														  </table>'
+												data-html="true"> <i
+												class="fa fa-info-circle fa-2x" aria-hidden="true"></i></a></td>
 										</tr>
 										<%} }%>
 									</tbody>
@@ -97,7 +117,16 @@
 		src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
 	<script
 		src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
-
+	<script>
+$(document).ready(function(){
+	
+	$('#profiles').DataTable({
+			 drawCallback: function() {
+				    $('[data-toggle="popover"]').popover();
+				  }});
+       
+});
+</script>
 
 </body>
 </html>
