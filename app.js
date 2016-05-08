@@ -45,8 +45,15 @@ app.post('/register', user.register);
 app.get('/profilelist', profile.profilelist);
 app.get('/searchprofiles', profile.searchprofiles);
 
+//temp
+app.get('/myprofile',profile.myprofile)
+
+
 
 app.get('/contactus', contact.contactus);
+
+
+
 
 //Connect to Mongo on start
 db.connect(url, function(err) {

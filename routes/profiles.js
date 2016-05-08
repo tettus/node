@@ -4,9 +4,14 @@ var assert = require('assert');
 
 function displayProfilesList(req,res,result){
 	
+	var userid = req.param("userid");
+	var star = req.param("star");
+	
 	res.render('profilelist', {
    		title : 'Profile',
-   		data :result
+   		data :result,
+        userid:userid,
+        star:star
    	});
 	
 }
@@ -15,11 +20,11 @@ function displayProfilesList(req,res,result){
  * 
  */
 exports.profilelist = function(req, res) {
+		
 	
 		db.get().collection('user', function(err, collection) {
 		if (!err) {
 			collection.find().toArray(function(err, items) {
-				console.log(items);
 				return displayProfilesList(req, res, items);
 			});
 		} else {
@@ -35,15 +40,15 @@ exports.profilelist = function(req, res) {
 /***
  *  Search user object
  */
-exports.searchprofiles = function(req, res) {
+module.exports.searchprofiles = function(req, res) {
 	
 	var userid = req.param("userid");
 	var star = req.param("star");
-	console.log(" search userid"+userid);
+	///console.log(" search userid"+userid);
 	 
 	db.get().collection('user', function(err, collection) {
 		if (!err) {
-			collection.find().toArray(function(err, items) {
+			collection.find({"userid":userid}).toArray(function(err, items) {
 				console.log(items);
 				return displayProfilesList(req, res, items);
 			});
@@ -55,3 +60,13 @@ exports.searchprofiles = function(req, res) {
 	});
 	
 };
+
+
+
+module.exports.myprofile =function(req,res){
+	res.render('myprofile', {
+   		title : 'Profile'  		 
+   	});
+	
+};
+

@@ -57,7 +57,7 @@ exports.registration = function(req, res) {
 /**
  * 
  */
-exports.register = function(req, res) {
+exports.register = function(req, res,next) {
 	 
 	  getNextSequenceValue( 0, function(err, obj) {
 		 
@@ -84,9 +84,9 @@ exports.register = function(req, res) {
 							});							
 						 
 					  }else{
-
+						   
 							var newuser = {
-								"userid" : obj.value.userid,
+								"userid" : obj.value.userid+'',
 								"fullname" : fullname,
 								"phonenumber" : phonenumber,
 								"email" : email,
@@ -102,7 +102,7 @@ exports.register = function(req, res) {
 						  
 					  }
 					}else{
-						//send to error page
+						 return next(err);
 					}
 				});
 

@@ -5,7 +5,8 @@
 body {
 	font: 1.6em "Lucida Grande", Helvetica, Arial, sans-serif;
 	background-color: rgba(243, 237, 237, 0.16);
-	background-image: url("/images/paper.png");
+	font-weight: 300;
+    letter-spacing: 0;
 }
 
 a {
@@ -115,4 +116,120 @@ a {
 .input-ph-custom{
 	
 	padding-left :2px;
+}
+
+
+.container-profile-custom{
+  padding-left:50px;	
+}
+
+.panel-profile-custom,.panel-prof-other {
+	background-color: #ffffff;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-border-radius: 4px; -moz-border-radius : 4px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	border-color: #d3e0e9;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	-moz-border-radius: 4px;
+}
+
+.panel-profile-custom .panel-body{
+	min-height:270px;	
+	padding:0px;
+	 position: relative;
+}
+
+.profile-header {
+	min-height: 105px;
+	background-color: #3b5998;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-webkit-border-top-left-radius: 3px;
+	-moz-border-top-right-radius: 3px;
+	-moz-border-top-left-radius: 3px;
+	padding: -1px;
+	z-index: 1900;
+}
+
+.profile-dp{	 
+	z-index:2000;
+}
+
+.profile-dp-img {
+	position: absolute;
+	top: 25%;
+	left: 36%;
+	max-width: 100px;
+	border-image-source: initial;
+	border-image-slice: initial;
+	border-image-width: initial;
+	border-image-outset: initial;
+	border-image-repeat: initial;
+	box-shadow: rgba(0, 0, 0, 0.0980392) 0px 1px 1px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: rgb(255, 255, 255);
+	border-radius: 100%;
+	
+}
+
+.profile-body{
+	position:absolute;
+	top:59%;
+	text-align: center;
+	width:100%;
+}
+
+.profile-display-name{
+	margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight:600;
+    font-family: 1.1em "Tahome" "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.profile-display-content{
+	margin-top: 10;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight:300;
+    line-height:5px;    
+}
+.qw {
+    padding: 15px;
+     
+}
+.profile-others-heading{
+	font-size: 14px;
+    font-weight:600;    
+}
+.poc{
+	font-size: 14px;
+    font-weight:300;
+}
+
+.eb {
+    padding-left: 0px;
+    list-style: none;
+}
+ 
+ul, ol {
+    margin-top: 0px;
+    margin-bottom: 11px;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.dp {
+    color: rgb(157, 169, 176);
+}
+.all {
+    margin-right: 20px;
 }
