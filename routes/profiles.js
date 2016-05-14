@@ -63,6 +63,13 @@ module.exports.searchprofiles = function(req, res) {
 
 
 
+module.exports.viewprofile =function(req,res){
+	res.render('view-profile', {
+   		title : 'Profile'  		 
+   	});
+	
+};
+
 module.exports.myprofile =function(req,res){
 	res.render('myprofile', {
    		title : 'Profile'  		 

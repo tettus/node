@@ -9,57 +9,110 @@ body {
 }
 </style>
 </head>
-
-
 <body>
-
-	<div class="container">
-
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-xs-12 col-md-9">
+			<div class="col-xs-12 col-md-12">
 
-				<div class="row">
-					<div class="col-xs-12 col-md-4">
-						<div class="panel panel-profile-custom">
-
-							<div class="panel-body">
-								<div class="profile-header"></div>
-								<div class="profile-dp">
-									<img src="/images/kaushal.jpg"
-										class="img-circle profile-dp-img" alt="Cinque Terre"
-										width="80" height="80" />
+				<form class="form-inline" method="post" action="/updateprofile">
+					<div class="panel  panel-custom panel-myprofile">
+						<div class="panel-body">
+							<div class="header">Personal Details</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-6 col-md-4">
+									<div class="form-group">
+										<label for="fullname" class=""> Full Name</label> <input
+											type="text" class="form-control" id="fullname"
+											name="fullname" placeholder="Full Name" required tabindex='1'>
+									</div>
 								</div>
-								<div class="profile-body">
-
-									<h5 class="profile-display-name">Kaushal Tettu Komandur</h5>
-									<p class="profile-display-content">Singapore city,Singapore</p>
+								<div class="col-xs-12 col-sm-6 col-md-4">
+									<div class="form-group">
+										<label for="dob" class=""> Date of birth</label> <input
+											type="date" class="form-control" id="dob" name="dob"
+											placeholder="Date of Birth" required tabindex='2'>
+									</div>
 								</div>
 							</div>
+							<br>
+							<div class="row">
+								<div class="col-xs-12 col-sm-6 col-md-4">
+									<div class="form-group">
+										<label for="height">Height</label>
 
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12 col-md-4">
-						<div class="panel panel-prof-other">
-							<div class="panel-body qw">
-							
-							<h5 class="profile-others-heading">About </h5>
-								<ul class="eb tb poc">
-									<li><span class="dp h xh all"></span>Lives in <a href="#"></a></li>
-									<li><span class="dp h ajw all"></span>Became friends with
-										 </li>
-									<li><span class="dp h abu all"></span>Worked at  </li>
-									<li><span class="dp h ack all"></span>Lives in  </li>
-									<li><span class="dp h adt all"></span>From  </li>
-								</ul>
+										<div class="input-group">
+											<input type="number" name="height" id="height"
+												class="form-control" placeholder="Height"
+												aria-describedby="basic-addon1"> <span
+												class="input-group-addon" id="basic-addon1">cm</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xs-12 col-sm-6 col-md-4">
+									<div class="form-group">
+										<label for="weight">Weight</label>
+
+										<div class="input-group ">
+											<input type="number" name="weight" id="weight"
+												class="form-control" placeholder="Weight"
+												aria-describedby="basic-addon2"> <span
+												class="input-group-addon" id="basic-addon2">Kg</span>
+										</div>
+									</div>
+								</div>
 							</div>
-
-
 						</div>
 					</div>
-				</div>
-				<div class="col-md-2"></div>
+					<div class="panel  panel-custom panel-myprofile">
+						<div class="panel-body">
+							<div class="header">Other Details</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-6 col-md-4">
+									<div class="form-group">
+										<label for="category" class=""> Community</label> 
+										
+										<select name="category"  class="form-control" >
+										  <option value="1">Iyangar</option>
+										  <option value="2">Iyer</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-4">
+									<div class="form-group">
+										<label for="sub" class=""> Sub Community </label> <input
+											type="text" class="form-control" id="sub" name="sub"
+											placeholder="Sub" required tabindex='2'>
+									</div>
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-xs-12 col-sm-6 col-md-4">
+									<div class="form-group">
+										 
+
+										<label for="gothram" class="">Gothram </label> <input
+											type="text" class="form-control" id="gothram" name="sub"
+											placeholder="Gothram" required tabindex='2'>
+									</div>
+								</div>
+
+								<div class="col-xs-12 col-sm-6 col-md-4">
+									<div class="form-group">
+										<label for="star">Star</label>
+
+										<input
+											type="text" class="form-control" id="gothram" name="sub"
+											placeholder="Star" required tabindex='2'>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+
 			</div>
 		</div>
 

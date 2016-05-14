@@ -7,6 +7,7 @@
 				<i class="fa fa-bars" aria-hidden="true"></i>
 			</button>
 			<a class="navbar-brand" href="#">Tettus</a>
+			 
 		</div>
 		<div class="collapse navbar-collapse" id="toolsNavBar">
 			<ul class="nav navbar-nav">
@@ -16,7 +17,24 @@
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="/loginpage"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Login</a></li>
+			   
+			  
+			   
+			  <% if(locals.user!=undefined)	{ %>
+			     <li class="active"><a href="/myprofile">
+			            <span class="capitalize">
+			            <i class="fa fa-user" aria-hidden="true"></i>
+			              <%=user.fullname%>&nbsp;  
+			            <img src="/images/kaushal.jpg"
+										class="img-circle header-dp-img" alt="Cinque Terre"
+										 />
+			            </span></a></li>				
+			    
+				 <li class="active"><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>				
+				<% }else { %>			   
+			    <li class="active"><a href="/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Login</a></li>
+			    <% } %>
+			   
 			</ul>
 		</div>
 

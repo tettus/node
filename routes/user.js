@@ -110,23 +110,17 @@ exports.register = function(req, res,next) {
 		});
 };
 
-/*
- * login page
+
+
+/***
+ * authenticate after login
  */
-
-exports.loginpage = function(req, res) {
-	res.render('login', {
-		title : 'Login'
-	});	
-};
-
-
 exports.authenticate = function(req, res) {
 	
 	var email = req.param("email");
 	var password = req.param("password");
 	
-	db.get().collection("user").findOne({"email":email}, function(err, item) {
+	db.get().collection("user").findOne({"email":email}, function(err, user) {
 		
 		if(err){
 			res.render('login', {
@@ -136,27 +130,17 @@ exports.authenticate = function(req, res) {
 			});
 		}
 		
-		if(item!==null){
-			console.log("item.password!==password "+(item.password!==password));
-			if(item.password!==password){
-				res.render('login', {
-					title : 'Login',
-					error :  "true",
-					msg:"The email and password do not match."
-				});				
-			}else{
-				profile.profilelist(req,res);
-				
-			}
-			
-		} else{
-			console.log("Error:No record found for [ "+email+"]");
-			res.render('login', {
-				title : 'Login',
-				error : "true",
-				msg:"The email does not exist please register."
-			});
-		}
+		 if (!user) {
+		      res.render('login', {title:"Login",error :  "true", msg: 'Invalid email or password.' });
+		    } else {
+		      if (req.body.password === user.password) {
+		        // sets a cookie with the user's info
+		        req.session.user = user;
+		        res.redirect('/profilelist');
+		      } else {
+		        res.render('login', {title:"Login",error :  "true", msg: 'Invalid email or password.' });
+		      }
+		    }
 		 
 	});
 };
