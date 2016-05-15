@@ -1,5 +1,6 @@
 var  db = require('./db');
 var assert = require('assert');
+var iu = require('./imageupload');
 
 
 function displayProfilesList(req,res,result){
@@ -77,3 +78,16 @@ module.exports.myprofile =function(req,res){
 	
 };
 
+module.exports.save =function(req,res){
+	
+	var tmp_path = req.files.profilepic1.path;
+	
+	console.log(" temp path"+tmp_path);
+	
+	iu.upload(req,res);
+	
+	res.render('myprofile', {
+   		title : 'Profile'  		 
+   	});
+	
+};

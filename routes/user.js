@@ -4,6 +4,7 @@
 
 var  db = require('./db')
     ,profile= require('./profiles')
+    ,mail = require('./email')
     ,index= require('./index');
  
 
@@ -95,7 +96,9 @@ exports.register = function(req, res,next) {
 							};
 
 							mongoInsert('user', newuser, function(user_res) {
-								res.render('index', {
+								//send registration email
+								mail.sendmail(req,res);
+								res.render('myprofile', {
 									title : 'Login'
 								});					 
 							});

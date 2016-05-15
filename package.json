@@ -9,6 +9,8 @@
     "express": "3.2.6",
     "ejs": "*",
     "mongodb": "*",
-    "client-sessions" :"*"
+    "client-sessions" :"*",
+    "nodemailer" :"*",
+    "cloudinary" :"*"
   }
 }

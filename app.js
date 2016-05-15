@@ -3,6 +3,8 @@
  */
 
 var express = require('express'), routes = require('./routes'), user = require('./routes/user'), contact = require('./routes/contact'), profile = require('./routes/profiles'), http = require('http'), path = require('path'), db = require('./routes/db'), session = require('client-sessions');
+var errors=require('./routes/errorhandler.js')
+
 var app = express();
 
 var url = 'mongodb://useru:useru4a0@ds045704.mlab.com:45704/tettu';
@@ -48,6 +50,11 @@ app.use(function(req, res, next) {
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use(errors.logErrors);
+app.use(errors.clientErrorHandler);
+app.use(errors.errorHandler);
+
 // development only
 if ('development' === app.get('env')) {
 	app.use(express.errorHandler());
@@ -65,6 +72,8 @@ app.get('/logout', function(req, res) {
 app.post('/authenticatelogin', user.authenticate);
 app.get('/registration', user.registration);
 app.post('/register', user.register);
+
+app.post('/saveprofile', profile.save);
 
 app.get('/profilelist', profile.profilelist);
 app.get('/searchprofiles', profile.searchprofiles);
