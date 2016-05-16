@@ -3,11 +3,22 @@
  */
 
 var express = require('express'), routes = require('./routes'), user = require('./routes/user'), contact = require('./routes/contact'), profile = require('./routes/profiles'), http = require('http'), path = require('path'), db = require('./routes/db'), session = require('client-sessions');
-var errors=require('./routes/errorhandler.js')
+var errors=require('./routes/errorhandler.js');
 
 var app = express();
 
 var url = 'mongodb://useru:useru4a0@ds045704.mlab.com:45704/tettu';
+
+/***
+ * function to check if login required
+ */
+function requireLogin(req, res, next) {
+	if (!req.user) {
+		res.render('login',{error:"true",msg:"Please login before proceeding."});
+	} else {
+		next();
+	}
+};
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -85,16 +96,7 @@ app.get('/viewprofile/:id', requireLogin, profile.viewprofile);
 
 app.get('/contactus', contact.contactus);
 
-/***
- * function to check if login required
- */
-function requireLogin(req, res, next) {
-	if (!req.user) {
-		res.render('login',{error:"true",msg:"Please login before proceeding."});
-	} else {
-		next();
-	}
-};
+
 
 //Connect to Mongo on start
 db.connect(url, function(err) {

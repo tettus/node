@@ -31,3 +31,44 @@ exports.close = function(done) {
     });
   }
 };
+
+module.exports.mongoInsert=function (collection_name, data, cb) {
+	var collection = this.get().collection(collection_name);
+	collection.insert(data, function(err, res) {
+		if (err) {
+			console.log(err);
+		} else {
+			// console.log('Inserted into the ' + collection_name + ' collection');
+			cb(res);
+		}
+	});
+};
+
+/***
+ * 
+ */
+module.exports.update=function mongoInsert(collection_name, req,callback) {
+	
+	var collection = this.get().collection(collection_name);
+	console.log(" updating "+req.user._id);
+	collection.findAndModify(
+			 { "_id" : req.user._id },
+			[], 
+			{
+				 $set: {
+		    	     "userid":req.user.userid,
+					 "dob" :req.param("dob"),
+					 "height":req.param("height"),
+					 "weight":req.param("weight"),
+					 "gender":req.param("gender")
+				}
+			},
+
+			function(err, doc) {
+				console.log(" after update document"+doc);
+				return callback(err, doc);
+	});
+	 
+};
+
+

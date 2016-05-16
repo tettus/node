@@ -12,11 +12,10 @@ cloudinary.config({
 	  api_secret: 'J3qPofSNPbjI3KPfqDD001yLbeU' 
 });
 
-module.exports.upload =function (req,res){
-	
-    var tmp_path = req.files.profilepic1.path;
+module.exports.upload =function (req,res,callback){	
+    var tmp_path = req.files.img1.path;
 	cloudinary.uploader.upload(tmp_path, function(result) { 
-		  console.log(result) ;
+		 callback(null,result);
     });
 	
 };

@@ -5,35 +5,55 @@
 
 
 <script type="text/javascript">
-	
-	$(document).on(
-			'change',
-			'.btn-file :file',
-			function() {
-				var input = $(this), 
-				id  = $(this).attr('id'); 
-			 
-				input.trigger('fileselect', [id ]);
-			});
+	$(document).on('change', '.btn-file :file', function() {
+		var input = $(this), id = $(this).attr('id');
 
-	$(document).ready(
-			function() {
-				$('.btn-file :file').on(
-						'fileselect',
-						function(event, id) {
-							var reader = new FileReader();
-							reader.readAsDataURL(document.getElementById(id).files[0]);
-							reader.onload = function(oFREvent) {
-							document.getElementById("thumbnail_"+id).src = oFREvent.target.result;
-							 
-					};
-				});
-				
-		$(".img-thumbnail").click(function(){
-			
-		  
-		});
+		input.trigger('fileselect', [ id ]);
 	});
+
+	$(document)
+			.ready(
+					function() {
+			//set
+			$('input:radio[name="gender"]').filter('[value="<%=locals.user!=undefined? user.gender:""%>"]').attr('checked', true);
+			
+			
+						$('.btn-file :file')
+								.on(
+										'fileselect',
+										function(event, id) {
+
+											try {
+												var reader = new FileReader();
+												reader
+														.readAsDataURL(document
+																.getElementById(id).files[0]);
+												reader.onload = function(
+														oFREvent) {
+													document
+															.getElementById("thumbnail_"
+																	+ id).src = oFREvent.target.result;
+												}
+											} catch (err) {
+												alert("Please try again,something went wrong"
+														+ err);
+											}
+											$(".upload-icon-" + id).hide();
+											$("#thumbnail_" + id).show();
+										});
+
+						$(".remove-img-gly").click(function(e) {
+
+							var id = $(this).attr("id");
+							if (id === null) return;
+
+							id = id.substring(2);
+							e.preventDefault();
+							$("#thumbnail_" + id).hide();
+							$(".upload-icon-" + id).show();
+						});
+
+					});
 </script>
 
 
@@ -45,7 +65,6 @@ body {
 </head>
 <body>
 	<div class="container-fluid">
-
 		<form method="post" enctype="multipart/form-data"
 			action="/saveprofile">
 			<div class="row">
@@ -54,34 +73,44 @@ body {
 						<div class="panel-body">
 							<div class="header">Personal Details</div>
 							<div class="form-group">
-								<label for="gender">Gender</label> <input type="radio"
-									name="gender" value="male">Male <input type="radio"
-									name="gender" value="female">Female
+							  <div class="row">
+							    <div class="col-md-12 col-sm-12">
+								     &nbsp; <input type="radio" 
+										name="gender" id="male" value="male" >&nbsp;Male
+										 &nbsp;&nbsp;
+									 <input type="radio"
+										name="gender" id="female" value="female">&nbsp;Female
+										 
+									 
+							    </div>							  
+							  </div>								
 							</div>
 							<div class="form-group">
 								<label for="fullname">Full Name</label> <input type="text"
 									class="form-control" id="fullname" name="fullname"
-									placeholder="Enter full name">
+									placeholder="Enter full name" value='<%=locals.user!=undefined? user.fullname:""%>'>
 							</div>
 							<div class="form-group">
-								<label for="dob">D.O.B</label> <input type="date"
-									class="form-control" id="dob" name="dob"
+								<label for="dob">D.O.B (mm/dd/yyyy)</label> <input type="date"
+									class="form-control" id="dob" name="dob" value='<%=locals.user!=undefined? user.dob:""%>'
 									placeholder="Date of birth">
 							</div>
 							<div class="form-group">
 								<label for="height">Height</label> <input type="number"
-									class="form-control" id="height" name="height"
+									class="form-control" id="height" name="height" value='<%=locals.user!=undefined? user.height:""%>'
 									placeholder="Height in cm" min="0">
 							</div>
 
 							<div class="form-group">
 								<label for="weight">Weight</label> <input type="number"
-									class="form-control" id="weight" name="weight"
+									class="form-control" id="weight" name="weight" value='<%=locals.user!=undefined? user.weight:""%>'
 									placeholder="Weight in Kg">
 							</div>
+							
+							<div class="button-group">
+			  <button type="submit" class="btn  btn-success " >Save</button>
+			</div>
 
-
-							<button type="submit" class="btn btn-primary">Save</button>
 						</div>
 					</div>
 				</div>
@@ -90,46 +119,55 @@ body {
 				<div class="col-xs-12 col-md-4">
 					<!-- second column rows,stack panels vertically in md mode -->
 					<div class="row">
-
 						<div class="col-xs-12 col-md-12">
-					
 							<div class="panel  panel-custom panel-myprofile">
 								<div class="panel-body">
-									<div class="header">
-									   Profile picture  
-									</div>
+									<div class="header">Profile picture</div>
 									<div class="row">
 										<div class="col-xs-6 col-md-6">
 											<div class="image-upload">
-												<div class="div_img1 image-preview-thumbnail">
-												     
-													<div class="col-lg-6 col-sm-6 col-12 bg-icon">														 
-														<span class="file-input btn btn-file">
-															<i class="fa fa-camera fa-4x fa-bg"></i>  <input type="file" id="img1" >
+												<div class="image-preview-thumbnail">
+													<div
+														class="col-lg-6 col-sm-6 col-12 bg-icon upload-icon-img1 ">
+														<span class="file-input btn btn-file"> <i
+															class="fa fa-camera fa-4x fa-bg"></i> <input type="file"
+															id="img1" name="img1">
 														</span>
-														
 													</div>
 													<div>
-													  <img id="thumbnail_img1"  class="img-thumbnail preivew-image"/>														
+														<img id="thumbnail_img1"
+															class="img-thumbnail preivew-image" style="display: none" />
 													</div>
+
+												</div>
+												<div class="img-remove pull-center">
+													<a id="a_img1" class="remove-img-gly"><span
+														class="glyphicon glyphicon-trash"></span></a>
 												</div>
 
 											</div>
-											
+
 										</div>
 										<div class="col-xs-6 col-md-6">
 											<div class="image-upload">
-												<div class="div_img2 image-preview-thumbnail">
-													<div class="col-lg-6 col-sm-6 col-12 bg-icon bg-icon-wrapper">														 
-													  <div class="bg-icon-wrapper">	
-														<span class="file-input btn  btn-file">
-															<i class="fa fa-camera fa-4x fa-bg"></i>  <input type="file" id="img2" >
+												<div class="image-preview-thumbnail">
+													<div
+														class="col-lg-6 col-sm-6 col-12 bg-icon upload-icon-img2">
+
+														<span class="file-input btn  btn-file"> <i
+															class="fa fa-camera fa-4x fa-bg"></i> <input type="file"
+															id="img2" name="img2">
 														</span>
-													  </div>
+
 													</div>
 													<div>
-														<img id="thumbnail_img2" class="img-thumbnail preivew-image "/>
+														<img id="thumbnail_img2"
+															class="img-thumbnail preivew-image" style="display: none" />
 													</div>
+												</div>
+												<div class="img-remove pull-center">
+													<a id="a_img2" class="remove-img-gly"><span
+														class="glyphicon glyphicon-trash"></span></a>
 												</div>
 
 											</div>
@@ -137,36 +175,14 @@ body {
 									</div>
 								</div>
 							</div>
-
-						</div>
-
-						<div class="col-xs-12 col-md-12">
-
-<!-- 							<div class="panel  panel-custom panel-myprofile"> -->
-<!-- 								<div class="panel-body"> -->
-<!-- 									<div class="header">Community Details</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-						</div>
-
-					</div>
-
-
-
-
-				</div>
-
-				<div class="col-xs-12 col-md-4">
-					<div class="panel  panel-custom panel-myprofile">
-						<div class="panel-body">
-							<div class="header">Qualification Details</div>
-
-
 						</div>
 					</div>
 				</div>
+
 			</div>
+			
 		</form>
 	</div>
+	
 </body>
 </html>

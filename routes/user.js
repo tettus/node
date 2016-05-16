@@ -8,39 +8,21 @@ var  db = require('./db')
     ,index= require('./index');
  
 
-function mongoInsert(collection_name, data, cb) {
-	var collection = db.get().collection(collection_name);
-	collection.insert(data, function(err, res) {
-		if (err) {
-			console.log(err);
-		} else {
-			// console.log('Inserted into the ' + collection_name + ' collection');
-			cb(res);
-		}
-	});
-}
-
-
-
 /*
  * Generate user id for new registration
  */
 function getNextSequenceValue(category, callback) {
 
 	var collection = db.get().collection("userseq");
+	collection.findAndModify(
+			{"category" : 1}, 
+			[], 
+			{"$inc" : {"userid" : 1}},
 
-	collection.findAndModify({
-		"category" : 1
-	}, [], {
-		"$inc" : {
-			"userid" : 1
-		}
-	},
-
-	function(err, doc) {
-		 
-		return callback(err, doc);
-	});
+			function(err, doc) {
+		
+				return callback(err, doc);
+			});
 }
 
 exports.login = function(req, res) {
@@ -92,12 +74,19 @@ exports.register = function(req, res,next) {
 								"phonenumber" : phonenumber,
 								"email" : email,
 								"password" : password,
-								"status" : index.STATUS_IN_VERIFICATION
+								"status" : index.STATUS_IN_VERIFICATION,
+								"dob" :"",
+								"height":"",
+								"weight":"",
+								"gender":""
 							};
 
-							mongoInsert('user', newuser, function(user_res) {
+							db.mongoInsert('user', newuser, function(user_res) {
 								//send registration email
 								mail.sendmail(req,res);
+								req.user=newuser;
+								req.session.user = newuser;
+								 
 								res.render('myprofile', {
 									title : 'Login'
 								});					 

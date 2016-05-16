@@ -18,6 +18,10 @@ a {
 	font-size: 16px;
 }
 
+.hide-cust{
+	display:none;
+}
+
 .help-block-cust{
 	margin-left:14px;
 	padding:5px;	
@@ -28,7 +32,7 @@ a {
 }
 
 .navbar-custom {
-	background-color: #1fa67a;
+	background-color: var(--main-color) !important;
 	color: #C9EFE2;
 	font-weight: bold;
 }
@@ -284,6 +288,9 @@ li {
 	margin: 10px 10px 20px 10px;
 	display : inline-block;
 	text-align: center;
+	text-decoration: underline;
+	
+	width:100%;
 }
 
 .image-upload{
@@ -293,9 +300,9 @@ li {
 
 .image-preview-thumbnail{
 	height : 80%;
-	width : 99%;
-	border :2px solid #cacaca;
-	position:relative;	 
+	width : 99%;	
+	position:relative;	
+	border :2px solid #cacaca; 
 }
 
 .bg-icon{
@@ -308,6 +315,13 @@ li {
 	height : 80%;
 	width : 99%;
 }
+.img-remove{
+	padding:10px;
+	text-align: center;
+	color :red;
+	font-weight: 400;
+	cursor:pointer;
+}
 .preivew-image{
 	height:auto;
 	width:auto;
@@ -316,6 +330,8 @@ li {
 	position:absolute;
 	z-index:200;
 	padding:2px;
+	vertical-align: middle;
+	display:table-cell; vertical-align:middle; text-align:center
 }
 .img-edit{
 	position:absolute;
@@ -354,4 +370,9 @@ li {
 input[readonly] {
   background-color: white !important;
   cursor: text !important;
+}
+
+.gender-radio{
+	padding-right : 10px;
+	display:compact;
 }
