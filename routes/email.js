@@ -1,7 +1,7 @@
 var nodemailer = require('nodemailer');
 
 // create reusable transporter object using the default SMTP transport
-var transporter = nodemailer.createTransport('smtps://tettu%40ymail.com:Hello1%40%40smtp.mail.yahoo.com');
+var transporter = nodemailer.createTransport('smtps://sudharsan.tk%40gmail.com:Hello1%40%40smtp.mail.yahoo.com');
 
 // setup e-mail data with unicode symbols
 var mailOptions = {
@@ -14,13 +14,13 @@ var mailOptions = {
 
 // send mail with defined transport object
 module.exports.sendmail =function(req, res) {
-/*	transporter.sendMail(mailOptions, function(error, info){
+	transporter.sendMail(mailOptions, function(error, info){
 	    if(error){
 	        return console.log(error);
 	    }
 	    console.log('Message sent: ' + info.response);
 	    return;
-	});*/
+	});
 };
 	
 	

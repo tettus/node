@@ -1,0 +1,48 @@
+<div class="header">Family Details</div>
+
+<div class="form-group">
+	<label for="fullname">Star</label> <input type="text"
+		class="form-control" id="star" name="star"
+		placeholder="Enter Nakshatram" required
+		value='<%=locals.user!=undefined? user.star:""%>'>
+</div>
+<div class="form-group">
+	<label for="dob">Gothram</label> <input type="text"
+		class="form-control" id="gothram" name="gothram"
+		value='<%=locals.user!=undefined? user.gothram:""%>'
+		placeholder="Gothram">
+</div>
+<div class="form-group">
+	<label for="height">Community</label> 
+	<select class="form-control" name="category" value="category">
+	   <option value="1">Iyengar</option>
+	   <option value="2">Iyer</option>	   
+	</select>
+	
+</div>
+
+<div class="form-group">
+	<label for="weight">Sub community</label> <input type="text"
+		class="form-control" id="subcom" name="subcomm"
+		value='<%=locals.user!=undefined? user.subcat:""%>'
+		placeholder="Sub type">
+</div>
+
+<div class="form-group">
+	<label for="weight">Father</label> <input type="text"
+		class="form-control" id="father" name="father"
+		value='<%=locals.user!=undefined? user.father:""%>'
+		placeholder="Enter father's name">
+</div>
+<div class="form-group">
+	<label for="weight">Mother</label> <input type="text"
+		class="form-control" id="mother" name="mother"
+		value='<%=locals.user!=undefined? user.mother:""%>'
+		placeholder="Enter mother's name">
+</div>
+<div class="form-group">
+	<label for="weight">Number of Sibblings</label> <input type="number"
+		class="form-control" id="noofsibblings" name="noofsibblings"
+		value='<%=locals.user!=undefined? user.noofsibblings:""%>'
+		placeholder="Enter number of sibblings">
+</div>

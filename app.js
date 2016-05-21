@@ -13,7 +13,8 @@ var url = 'mongodb://useru:useru4a0@ds045704.mlab.com:45704/tettu';
  * function to check if login required
  */
 function requireLogin(req, res, next) {
-	if (!req.user) {
+	 
+	if ( !req.session.user) {
 		res.render('login',{error:"true",msg:"Please login before proceeding."});
 	} else {
 		next();
@@ -41,21 +42,16 @@ app.use(session({
 
 app.use(function(req, res, next) {
 	if (req.session && req.session.user) {
-		db.get().collection("user").findOne({
-			userid : req.session.user.userid
-		}, function(err, user) {
-			if (user) {
-				req.user = user;
-				delete req.user.password; // delete the password from the session
-				req.session.user = user; //refresh the session value
-				res.locals.user = user;
-			}
-			// finishing processing the middleware and run the route
-			next();
-		});
+		if (req.session.user) {
+			req.user = req.session.user;
+			delete req.user.password; // delete the password from the session
+			res.locals.user = req.session.user;
+		}
+		// finishing processing the middleware and run the route
+		next();
 	} else {
 		next();
-	}
+	}	 
 });
 
 app.use(app.router);
@@ -95,7 +91,7 @@ app.get('/myprofile', requireLogin, profile.myprofile);
 app.get('/viewprofile/:id', requireLogin, profile.viewprofile);
 
 app.get('/contactus', contact.contactus);
-
+app.post('/submitcontact',contact.submitcontact);
 
 
 //Connect to Mongo on start

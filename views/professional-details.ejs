@@ -1,0 +1,29 @@
+<div class="header">Professional Details</div>
+
+<div class="form-group">
+	<label for="fullname">Qualification</label> <input type="text"
+		class="form-control" id="qualification" name="qualification"
+		placeholder="Enter educational qualification" required
+		value='<%=locals.user!=undefined? user.qualification:""%>'>
+</div>
+<div class="form-group">
+	<label for="dob">Working In</label> <input type="text"
+		class="form-control" id="workingIn" name="workingIn"
+		value='<%=locals.user!=undefined? user.workingAt:""%>'
+		placeholder="Company you are working in?">
+</div>
+
+<div class="form-group">
+	<label for="height">Salary</label> 
+	<input type="text"
+		class="form-control" id="salary" name="salary"
+		value='<%=locals.user!=undefined? user.salary:""%>'
+		placeholder="Salary per month(optional)">
+	
+</div>
+
+<div class="form-group">
+	<label for="weight">Expectation</label> <textarea type="text"
+		class="form-control" id="expectation" name="expectation"
+		placeholder="Expectation about spouse"><%=locals.user!=undefined? user.expectation:""%></textarea>
+</div>

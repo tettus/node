@@ -372,7 +372,17 @@ input[readonly] {
   cursor: text !important;
 }
 
+.profile-bottom-navbar{
+	
+}
+
 .gender-radio{
 	padding-right : 10px;
 	display:compact;
+}
+
+
+.panel-error{
+	
+	
 }

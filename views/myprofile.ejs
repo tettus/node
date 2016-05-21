@@ -7,17 +7,20 @@
 <script type="text/javascript">
 	$(document).on('change', '.btn-file :file', function() {
 		var input = $(this), id = $(this).attr('id');
-
 		input.trigger('fileselect', [ id ]);
 	});
 
 	$(document)
 			.ready(
 					function() {
-			//set
-			$('input:radio[name="gender"]').filter('[value="<%=locals.user!=undefined? user.gender:""%>"]').attr('checked', true);
-			
-			
+						
+						
+						//set
+						$('input:radio[name="gender"]')
+							.filter(
+										'[value="<%=locals.user!=undefined? user.gender:""%>"]')
+								.attr('checked', true);
+
 						$('.btn-file :file')
 								.on(
 										'fileselect',
@@ -43,17 +46,41 @@
 										});
 
 						$(".remove-img-gly").click(function(e) {
-
 							var id = $(this).attr("id");
-							if (id === null) return;
+							if (id === null)
+								return;
 
 							id = id.substring(2);
 							e.preventDefault();
 							$("#thumbnail_" + id).hide();
 							$(".upload-icon-" + id).show();
 						});
-
-					});
+						
+		 $(".page-link").click(function(){
+			 var atr= $(this).attr("data-target");
+			 var visiblePage= $(".page-scr:visible");
+			 $(".page-scr").hide();
+			 if(atr==="previous"){
+				 
+				 if($(visiblePage).prev(".page-scr").attr("id")!=null){
+					 $(visiblePage).prev(".page-scr").show();
+				 }else{
+					 $(visiblePage).show();
+				 }
+				 
+				 
+			 }else if(atr==="next"){
+				 if($(visiblePage).next(".page-scr").attr("id")!=null){
+					 $(visiblePage).next(".page-scr").show();
+				 }else{
+					 $(visiblePage).show();
+				 }
+			 }else{
+				 $(atr).show();					 
+			 }
+			
+		 });				
+		});
 </script>
 
 
@@ -65,51 +92,45 @@ body {
 </head>
 <body>
 	<div class="container-fluid">
-		<form method="post" enctype="multipart/form-data"
+		<form method="post" enctype="multipart/form-data" name="profileForm"
 			action="/saveprofile">
 			<div class="row">
 				<div class="col-xs-12 col-md-4">
 					<div class="panel  panel-custom panel-myprofile">
 						<div class="panel-body">
-							<div class="header">Personal Details</div>
-							<div class="form-group">
-							  <div class="row">
-							    <div class="col-md-12 col-sm-12">
-								     &nbsp; <input type="radio" 
-										name="gender" id="male" value="male" >&nbsp;Male
-										 &nbsp;&nbsp;
-									 <input type="radio"
-										name="gender" id="female" value="female">&nbsp;Female
-										 
-									 
-							    </div>							  
-							  </div>								
-							</div>
-							<div class="form-group">
-								<label for="fullname">Full Name</label> <input type="text"
-									class="form-control" id="fullname" name="fullname"
-									placeholder="Enter full name" value='<%=locals.user!=undefined? user.fullname:""%>'>
-							</div>
-							<div class="form-group">
-								<label for="dob">D.O.B (mm/dd/yyyy)</label> <input type="date"
-									class="form-control" id="dob" name="dob" value='<%=locals.user!=undefined? user.dob:""%>'
-									placeholder="Date of birth">
-							</div>
-							<div class="form-group">
-								<label for="height">Height</label> <input type="number"
-									class="form-control" id="height" name="height" value='<%=locals.user!=undefined? user.height:""%>'
-									placeholder="Height in cm" min="0">
-							</div>
-
-							<div class="form-group">
-								<label for="weight">Weight</label> <input type="number"
-									class="form-control" id="weight" name="weight" value='<%=locals.user!=undefined? user.weight:""%>'
-									placeholder="Weight in Kg">
-							</div>
+						  
+						  <div id="page1" class="page-scr">	
+							<% include personal-details %>
+						  </div>
+						   <div id="page2" class="page-scr hide-cust">	
+							<% include familydetails %>
+						   </div>
+							 <div id="page3" class="page-scr hide-cust">	
+							<% include professional-details %>
+						   </div>
+						    <div id="page4" class="page-scr hide-cust">	
+							  <% include contact-info %>
+						   </div>
+							<nav>
+								<ul class="pagination pull-center">
+									<li class="page-item"><a class="page-link" href="#"
+										aria-label="Previous" data-target="previous"> <span aria-hidden="true">&laquo;</span>
+											<span class="sr-only">Previous</span>
+									</a></li>
+									<li class="page-item"><a class="page-link" href="#1" data-target="#page1">1</a></li>
+									<li class="page-item"><a class="page-link" href="#2" data-target="#page2">2</a></li>
+									<li class="page-item"><a class="page-link" href="#3" data-target="#page3">3</a></li>
+									<li class="page-item"><a class="page-link" href="#4" data-target="#page4">4</a></li>
+									<li class="page-item"><a class="page-link" href="#"
+										aria-label="Next" data-target="next"> <span aria-hidden="true">&raquo;</span>
+											<span class="sr-only">Next</span>
+									</a></li>
+								</ul>
+							</nav>
 							
 							<div class="button-group">
-			  <button type="submit" class="btn  btn-success " >Save</button>
-			</div>
+								<button type="submit" class="btn  btn-success ">Save</button>
+							</div>
 
 						</div>
 					</div>
@@ -180,9 +201,9 @@ body {
 				</div>
 
 			</div>
-			
+
 		</form>
 	</div>
-	
+
 </body>
 </html>

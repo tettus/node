@@ -32,7 +32,14 @@ exports.close = function(done) {
   }
 };
 
-module.exports.mongoInsert=function (collection_name, data, cb) {
+
+
+
+
+/****
+ * Insert User 
+ */
+module.exports.insertUser=function (collection_name, data, cb) {
 	var collection = this.get().collection(collection_name);
 	collection.insert(data, function(err, res) {
 		if (err) {
@@ -45,27 +52,28 @@ module.exports.mongoInsert=function (collection_name, data, cb) {
 };
 
 /***
- * 
+ *  Update current user profile in the session
  */
-module.exports.update=function mongoInsert(collection_name, req,callback) {
+module.exports.updateUser=function (collection_name, req,callback) {
 	
 	var collection = this.get().collection(collection_name);
-	console.log(" updating "+req.user._id);
+
+	var options ={"new":"true"};
 	collection.findAndModify(
-			 { "_id" : req.user._id },
-			[], 
+			{ "email" : req.session.user.email },
+			{}, 
 			{
 				 $set: {
-		    	     "userid":req.user.userid,
-					 "dob" :req.param("dob"),
-					 "height":req.param("height"),
-					 "weight":req.param("weight"),
-					 "gender":req.param("gender")
+					 "fullname":req.body.fullname,
+					 "dob" :req.body.dob,
+					 "height":req.body.height,
+					 "weight":req.body.weight,
+					 "gender":req.body.gender
 				}
 			},
-
-			function(err, doc) {
-				console.log(" after update document"+doc);
+			options,
+			function(err, doc) {	
+				console.log(doc);
 				return callback(err, doc);
 	});
 	 

@@ -6,7 +6,9 @@ var  db = require('./db')
     ,profile= require('./profiles')
     ,mail = require('./email')
     ,index= require('./index');
- 
+
+
+
 
 /*
  * Generate user id for new registration
@@ -81,7 +83,7 @@ exports.register = function(req, res,next) {
 								"gender":""
 							};
 
-							db.mongoInsert('user', newuser, function(user_res) {
+							db.insertUser('user', newuser, function(user_res) {
 								//send registration email
 								mail.sendmail(req,res);
 								req.user=newuser;
@@ -128,6 +130,8 @@ exports.authenticate = function(req, res) {
 		      if (req.body.password === user.password) {
 		        // sets a cookie with the user's info
 		        req.session.user = user;
+		        //delete user pwd from session
+		        delete req.session.user.password;		        
 		        res.redirect('/profilelist');
 		      } else {
 		        res.render('login', {title:"Login",error :  "true", msg: 'Invalid email or password.' });
