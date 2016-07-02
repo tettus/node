@@ -1,16 +1,18 @@
 <div class="header">Family Details</div>
 
 <div class="form-group">
-	<label for="fullname">Star</label> <input type="text"
+	<label for="fullname">Star *</label> <input type="text"
 		class="form-control" id="star" name="star"
-		placeholder="Enter Nakshatram" required
+		placeholder="Enter Nakshatram (required)"  required-field parent-div="page2"
+		desc="Star"
 		value='<%=locals.user!=undefined? user.star:""%>'>
 </div>
 <div class="form-group">
-	<label for="dob">Gothram</label> <input type="text"
-		class="form-control" id="gothram" name="gothram"
+	<label for="dob">Gothram *</label> <input type="text"
+	    desc="Gothram"
+		class="form-control" id="gothram" name="gothram" required-field parent-div="page2"
 		value='<%=locals.user!=undefined? user.gothram:""%>'
-		placeholder="Gothram">
+		placeholder="Gothram (required)">
 </div>
 <div class="form-group">
 	<label for="height">Community</label> 
@@ -23,26 +25,21 @@
 
 <div class="form-group">
 	<label for="weight">Sub community</label> <input type="text"
-		class="form-control" id="subcom" name="subcomm"
+		class="form-control" id="subcom" name="subcategory"
 		value='<%=locals.user!=undefined? user.subcat:""%>'
-		placeholder="Sub type">
+		placeholder="Sub type (optional)">
 </div>
 
 <div class="form-group">
 	<label for="weight">Father</label> <input type="text"
 		class="form-control" id="father" name="father"
 		value='<%=locals.user!=undefined? user.father:""%>'
-		placeholder="Enter father's name">
+		placeholder="Enter father's name (optional)">
 </div>
 <div class="form-group">
 	<label for="weight">Mother</label> <input type="text"
 		class="form-control" id="mother" name="mother"
 		value='<%=locals.user!=undefined? user.mother:""%>'
-		placeholder="Enter mother's name">
+		placeholder="Enter mother's name (optional)">
 </div>
-<div class="form-group">
-	<label for="weight">Number of Sibblings</label> <input type="number"
-		class="form-control" id="noofsibblings" name="noofsibblings"
-		value='<%=locals.user!=undefined? user.noofsibblings:""%>'
-		placeholder="Enter number of sibblings">
-</div>
+ 

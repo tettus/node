@@ -6,15 +6,12 @@
 <body>
 
 	<div class="container">
-		
-
 			<div class="row">
 				<div class="col-md-2"></div>
-				
 				<div class="col-md-8">
 				 <div class="panel  panel-custom panel-contact">
 					<div class="panel-body">
-						<form class="form-horizontal" method="post" action="/submitcontact">
+						<form class="form-horizontal" method="post" action="/sendcontactmsg">
 							<fieldset>
 								<h3 class="text-center">Contact Us</h3>
 								<br>
@@ -27,7 +24,6 @@
 												type="text" class="form-control" id="fullname"
 												name="fullname" placeholder="Full Name" required
 												tabindex='1'>
-
 										</div>
 									</div>
 								</div>
@@ -36,7 +32,7 @@
 										<div class="input-group margin-bottom-sm">
 											<span class="input-group-addon input-group-addon-cust"><i
 												class="fa fa-envelope" aria-hidden="true"></i></span> <input
-												type="email" class="form-control" id="email" name="email"
+												type="email" class="form-control" id="emailto" name="emailto"
 												placeholder="Email Address" required tabindex='2'>
 										</div>
 									</div>
@@ -50,13 +46,9 @@
 												name="phonenumber" placeholder="Phone number (optional)" tabindex='3'>
 										</div>
 									</div>
-
 								</div>
 
-								
-
 								<div class="form-group">
-
 									<div class="col-md-12">
 										<textarea class="form-control" id="message" name="message"
 											placeholder="Enter your massage here. We will get back ."

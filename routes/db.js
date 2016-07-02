@@ -68,7 +68,20 @@ module.exports.updateUser=function (collection_name, req,callback) {
 					 "dob" :req.body.dob,
 					 "height":req.body.height,
 					 "weight":req.body.weight,
-					 "gender":req.body.gender
+					 "gender":req.body.gender,
+					 "star":req.body.star,
+					 "gothram":req.body.gothram,
+					 "category":req.body.category,
+					 "subcategory":req.body.subcategory,
+					 "mother":req.body.mother,
+					 "father":req.body.father,
+					 "qualification":req.body.qualification,
+					 "workingIn":req.body.workingIn,
+					 "currentcity":req.body.currentcity,
+					 "expectation":req.body.expectation,
+					 "hidephonenumber":req.body.hidephonenumber,
+					 "phonenumber":req.body.phonenumber,
+					 "email":req.body.email
 				}
 			},
 			options,

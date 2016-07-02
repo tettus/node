@@ -1,89 +1,23 @@
 
 <html>
+
+<meta name="cloudinary_cloud_name" content="tettus">
+
 <head>
 <% include common/header.ejs %>
+<script>
 
+$(document)
+.ready(
+		function() {
+$('input:radio[name="gender"]')
+	.filter(
+				'[value="<%=locals.user!=undefined? user.gender:""%>"]')
+		.attr('checked', true);
 
-<script type="text/javascript">
-	$(document).on('change', '.btn-file :file', function() {
-		var input = $(this), id = $(this).attr('id');
-		input.trigger('fileselect', [ id ]);
-	});
-
-	$(document)
-			.ready(
-					function() {
-						
-						
-						//set
-						$('input:radio[name="gender"]')
-							.filter(
-										'[value="<%=locals.user!=undefined? user.gender:""%>"]')
-								.attr('checked', true);
-
-						$('.btn-file :file')
-								.on(
-										'fileselect',
-										function(event, id) {
-
-											try {
-												var reader = new FileReader();
-												reader
-														.readAsDataURL(document
-																.getElementById(id).files[0]);
-												reader.onload = function(
-														oFREvent) {
-													document
-															.getElementById("thumbnail_"
-																	+ id).src = oFREvent.target.result;
-												}
-											} catch (err) {
-												alert("Please try again,something went wrong"
-														+ err);
-											}
-											$(".upload-icon-" + id).hide();
-											$("#thumbnail_" + id).show();
-										});
-
-						$(".remove-img-gly").click(function(e) {
-							var id = $(this).attr("id");
-							if (id === null)
-								return;
-
-							id = id.substring(2);
-							e.preventDefault();
-							$("#thumbnail_" + id).hide();
-							$(".upload-icon-" + id).show();
-						});
-						
-		 $(".page-link").click(function(){
-			 var atr= $(this).attr("data-target");
-			 var visiblePage= $(".page-scr:visible");
-			 $(".page-scr").hide();
-			 if(atr==="previous"){
-				 
-				 if($(visiblePage).prev(".page-scr").attr("id")!=null){
-					 $(visiblePage).prev(".page-scr").show();
-				 }else{
-					 $(visiblePage).show();
-				 }
-				 
-				 
-			 }else if(atr==="next"){
-				 if($(visiblePage).next(".page-scr").attr("id")!=null){
-					 $(visiblePage).next(".page-scr").show();
-				 }else{
-					 $(visiblePage).show();
-				 }
-			 }else{
-				 $(atr).show();					 
-			 }
-			
-		 });				
 		});
+
 </script>
-
-
 <style>
 body {
 	background-color: #f5f8fa;
@@ -92,14 +26,18 @@ body {
 </head>
 <body>
 	<div class="container-fluid">
-		<form method="post" enctype="multipart/form-data" name="profileForm"
+		<form method="post" enctype="multipart/form-data" id="profileForm"
 			action="/saveprofile">
 			<div class="row">
 				<div class="col-xs-12 col-md-4">
 					<div class="panel  panel-custom panel-myprofile">
 						<div class="panel-body">
-						  
-						  <div id="page1" class="page-scr">	
+							<div class="alert alert-danger hide-cust" role="alert" id="alert-profile">
+								<span class="glyphicon glyphicon-exclamation-sign"
+									aria-hidden="true"></span> <span class="sr-only">Error:</span>
+								 
+							</div>
+							<div id="page1" class="page-scr">	
 							<% include personal-details %>
 						  </div>
 						   <div id="page2" class="page-scr hide-cust">	
@@ -111,7 +49,7 @@ body {
 						    <div id="page4" class="page-scr hide-cust">	
 							  <% include contact-info %>
 						   </div>
-							<nav>
+							<nav class="pagination-custom">
 								<ul class="pagination pull-center">
 									<li class="page-item"><a class="page-link" href="#"
 										aria-label="Previous" data-target="previous"> <span aria-hidden="true">&laquo;</span>
@@ -128,82 +66,39 @@ body {
 								</ul>
 							</nav>
 							
-							<div class="button-group">
-								<button type="submit" class="btn  btn-success ">Save</button>
+							<span class="help-block error">* fields are mandatory</span>
+							
+							<div class="button-group pull-right">
+								<button type="submit" class="btn  btn-success" id="submitProfile">Save</button>
+								<a href="/" class="btn  btn-success">Cancel</a>
 							</div>
 
 						</div>
 					</div>
 				</div>
-
+				</div>
+			</form>
 
 				<div class="col-xs-12 col-md-4">
 					<!-- second column rows,stack panels vertically in md mode -->
-					<div class="row">
-						<div class="col-xs-12 col-md-12">
-							<div class="panel  panel-custom panel-myprofile">
-								<div class="panel-body">
-									<div class="header">Profile picture</div>
-									<div class="row">
-										<div class="col-xs-6 col-md-6">
-											<div class="image-upload">
-												<div class="image-preview-thumbnail">
-													<div
-														class="col-lg-6 col-sm-6 col-12 bg-icon upload-icon-img1 ">
-														<span class="file-input btn btn-file"> <i
-															class="fa fa-camera fa-4x fa-bg"></i> <input type="file"
-															id="img1" name="img1">
-														</span>
-													</div>
-													<div>
-														<img id="thumbnail_img1"
-															class="img-thumbnail preivew-image" style="display: none" />
-													</div>
-
-												</div>
-												<div class="img-remove pull-center">
-													<a id="a_img1" class="remove-img-gly"><span
-														class="glyphicon glyphicon-trash"></span></a>
-												</div>
-
-											</div>
-
-										</div>
-										<div class="col-xs-6 col-md-6">
-											<div class="image-upload">
-												<div class="image-preview-thumbnail">
-													<div
-														class="col-lg-6 col-sm-6 col-12 bg-icon upload-icon-img2">
-
-														<span class="file-input btn  btn-file"> <i
-															class="fa fa-camera fa-4x fa-bg"></i> <input type="file"
-															id="img2" name="img2">
-														</span>
-
-													</div>
-													<div>
-														<img id="thumbnail_img2"
-															class="img-thumbnail preivew-image" style="display: none" />
-													</div>
-												</div>
-												<div class="img-remove pull-center">
-													<a id="a_img2" class="remove-img-gly"><span
-														class="glyphicon glyphicon-trash"></span></a>
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<% include dp-upload %>
 				</div>
 
 			</div>
 
-		</form>
+	
 	</div>
+ <script src="/js/profile.js"></script>
+ 
+ <!-- cloudinary scripts -->
+ <script src="node_modules/jquery/dist/jquery.js"                                          type="text/javascript"></script>
+<script src="node_modules/blueimp-file-upload/js/vendor/jquery.ui.widget.js"              type="text/javascript"></script>
+<script src="node_modules/blueimp-file-upload/js/jquery.iframe-transport.js"              type="text/javascript"></script>
+<script src="node_modules/blueimp-file-upload/js/jquery.fileupload.js"                    type="text/javascript"></script>
+<script src="node_modules/blueimp-file-upload/js/jquery.fileupload-image.js"              type="text/javascript"></script>
 
+<script src="node_modules/cloudinary-jquery-file-upload/cloudinary-jquery-file-upload.js" type="text/javascript"></script>
+
+<!-- cloudinary ends -->
 </body>
 </html>

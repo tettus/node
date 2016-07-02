@@ -2,7 +2,15 @@
  * Module dependencies.
  */
 
-var express = require('express'), routes = require('./routes'), user = require('./routes/user'), contact = require('./routes/contact'), profile = require('./routes/profiles'), http = require('http'), path = require('path'), db = require('./routes/db'), session = require('client-sessions');
+var express = require('express'), 
+routes = require('./routes'), 
+user = require('./routes/user'), 
+contact = require('./routes/contact'), 
+profile = require('./routes/profiles'),
+http = require('http'), 
+path = require('path'), 
+db = require('./routes/db'),
+session = require('client-sessions');
 var errors=require('./routes/errorhandler.js');
 
 var app = express();
@@ -19,7 +27,7 @@ function requireLogin(req, res, next) {
 	} else {
 		next();
 	}
-};
+}
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -91,7 +99,7 @@ app.get('/myprofile', requireLogin, profile.myprofile);
 app.get('/viewprofile/:id', requireLogin, profile.viewprofile);
 
 app.get('/contactus', contact.contactus);
-app.post('/submitcontact',contact.submitcontact);
+app.post('/sendcontactmsg',contact.sendMessage);
 
 
 //Connect to Mongo on start

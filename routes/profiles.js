@@ -98,7 +98,7 @@ module.exports.myprofile =function(req,res){
 
 module.exports.save =function(req,res,next){	 
 	 var user= req.user;	
-	 console.log(" befoe update"+req.body.height);	 
+	  	 
 	 db.updateUser("user",req,function(err,doc){					
 		if(!err){		
 			res.render('myprofile', {

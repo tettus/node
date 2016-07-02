@@ -9,6 +9,18 @@ var  db = require('./db')
 
 
 
+function getWelcomeEmail(user,callback){
+	
+	var html="Welcome <b><span style='color:blue'>"+user.fullname+" ! </span> </b>,"
+					+"<p>Thank you for registering with us.We wish you find your soul mate soon.." +
+							"<p>Please feel free to ask any queries"
+					+" or any feedback/suggetions so that we can improve the website and make"
+					+" this a better experience."
+	
+					callback(html);
+				
+}
+
 
 /*
  * Generate user id for new registration
@@ -84,13 +96,33 @@ exports.register = function(req, res,next) {
 							};
 
 							db.insertUser('user', newuser, function(user_res) {
-								//send registration email
-								mail.sendmail(req,res);
-								req.user=newuser;
-								req.session.user = newuser;
+								
+								// sets a cookie with the user's info
+						        req.session.user = newuser;
+						        //delete user pwd from session
+						        delete req.session.user.password;	
 								 
+								
+								var content=getWelcomeEmail(newuser,function(content){
+									// setup e-mail data with unicode symbols
+									var mailOptions = {
+									    from: 'imatriorg@gmail.com', // sender address
+									    to: email, // list of receivers
+									    subject: "Welcome to iMatriorg", // Subject line
+									    text: content, // plaintext body
+									    html: content // html body
+									};
+									
+									//send registration email
+									mail.sendmail(req,res,mailOptions);
+									
+								}); 
+								
+								
+								
 								res.render('myprofile', {
-									title : 'Login'
+									title : 'Profile page',
+									user: newuser
 								});					 
 							});
 						  

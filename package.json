@@ -11,6 +11,9 @@
     "mongodb": "*",
     "client-sessions" :"*",
     "nodemailer" :"*",
-    "cloudinary" :"*"
+    "blueimp-file-upload":"*",
+    "cloudinary-jquery-file-upload":"*",
+    "jquery":"*",
+    "cloudinary":"*"
   }
 }
